@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* PP Editorial Old Font */
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/ppeditorialold-ultralight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/ppeditorialold-ultralightitalic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/ppeditorialold-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/ppeditorialold-italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/ppeditorialold-ultrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/ppeditorialold-ultrabolditalic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+/* Bradford Remodels Design System */
+
+@layer base {
+  :root {
+    /* Brand Color System */
+    --bg: 0 0% 100%;
+    --bg-alt: 57 13% 96%;
+    --bg-muted: 50 8% 93%;
+    --border: 50 8% 81%;
+    --text: 0 0% 10%;
+    --text-strong: 0 0% 7%;
+    --accent-primary: 18 35% 57%;
+    --accent-primary-hover: 18 35% 51%;
+    --accent-secondary: 120 14% 65%;
+    --accent-tertiary: 35 22% 65%;
+    --accent-sand: 35 22% 77%;
+
+    /* Legacy system mappings for compatibility */
+    --background: var(--bg);
+    --foreground: var(--text);
+    --card: var(--bg);
+    --card-foreground: var(--text);
+    --popover: var(--bg);
+    --popover-foreground: var(--text);
+    --primary: var(--accent-primary);
+    --primary-foreground: var(--bg);
+    --secondary: var(--accent-secondary);
+    --secondary-foreground: var(--text-strong);
+    --muted: var(--bg-muted);
+    --muted-foreground: var(--text);
+    --accent: var(--accent-tertiary);
+    --accent-foreground: var(--text-strong);
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: var(--bg);
+    --input: var(--border);
+    --ring: var(--accent-primary);
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3 {
+    color: hsl(var(--text-strong));
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold;
+  }
+
+  a {
+    color: hsl(var(--text-strong));
+    transition: all 0.2s ease-out;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--accent-tertiary));
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+}
+
+@layer utilities {
+  .parallax-bg {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .gentle-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .gentle-shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .parallax-bg {
+      transform: none !important;
+    }
+  }
+}
