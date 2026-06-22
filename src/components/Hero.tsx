@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-kitchen-new.jpg";
 
 interface HeroProps {
   title?: string;
+  titleLine2?: string;
   subtitle?: string;
   backgroundImage?: string;
-  backgroundVideoSrc?: string; // optional video background
-  hideCTA?: boolean; // optionally hide CTA
-  darkerOverlay?: boolean; // optional darker overlay
+  backgroundVideoSrc?: string;
+  hideCTA?: boolean;
+  darkerOverlay?: boolean;
+  ctaText?: string;
 }
 
 export default function Hero({
-  title = "Crafted Remodels. Enduring Value.",
-  subtitle = "Transform your home with expert kitchen, bathroom, and whole-home remodeling services.",
-  backgroundImage = heroImage,
+  title = "Specialists in Pool Construction, Repairs and Remodeling",
+  titleLine2 = "Bringing Your Dream Home to Life",
+  subtitle = "We help you place the pool in the best spot in your home to make the most of every space in your backyard.",
+  backgroundImage = "/bestway-images/gallery-1.webp",
   backgroundVideoSrc,
   hideCTA = false,
   darkerOverlay = false,
+  ctaText = "Call for Visit",
 }: HeroProps) {
   const [scrollY, setScrollY] = useState(0);
 
@@ -35,7 +38,6 @@ export default function Hero({
 
   return (
     <section className="relative h-[90vh] md:h-screen flex items-end justify-center overflow-hidden">
-      {/* Background (image or video) */}
       {backgroundVideoSrc ? (
         <div
           className="absolute inset-0"
@@ -66,22 +68,12 @@ export default function Hero({
         </div>
       )}
 
-      {/* Text and optional CTA */}
       <div className="absolute bottom-20 md:bottom-28 lg:bottom-32 left-0 right-0 z-10">
         <div className="w-[80%] mx-auto">
           <h1 className="text-white leading-tight mb-6" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-            {title === "Designed for You, Built for Life" ? (
-              <>
-                <span className="block text-4xl md:text-5xl lg:text-6xl xl:text-7xl">Designed for You,</span>
-                <span className="block text-4xl md:text-5xl lg:text-6xl xl:text-7xl italic">Built for Life</span>
-              </>
-            ) : title === "Custom Home Builders" ? (
-              <>
-                <span className="block text-5xl md:text-6xl lg:text-7xl xl:text-8xl">Custom Home</span>
-                <span className="block text-5xl md:text-6xl lg:text-7xl xl:text-8xl italic">Builders</span>
-              </>
-            ) : (
-              <span className="block text-5xl md:text-6xl lg:text-7xl xl:text-8xl">{title}</span>
+            <span className="block text-4xl md:text-5xl lg:text-6xl xl:text-7xl">{title}</span>
+            {titleLine2 && (
+              <span className="block text-4xl md:text-5xl lg:text-6xl xl:text-7xl italic">{titleLine2}</span>
             )}
           </h1>
           {subtitle && (
@@ -99,7 +91,7 @@ export default function Hero({
               }, 100);
             }}>
               <button className="bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-white/90 transition-colors">
-                Inquire about Availability
+                {ctaText}
               </button>
             </Link>
           )}

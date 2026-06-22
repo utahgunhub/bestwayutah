@@ -4,7 +4,7 @@ import { useMemo, useState, useEffect, useRef } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { MapPin, Home } from "lucide-react";
 
-type FilterType = "all" | "new-builds" | "remodels";
+type FilterType = "all" | "construction" | "repairs" | "remodeling";
 
 type ProjectImageProps = {
   src: string;
@@ -78,92 +78,42 @@ function ProjectImage({ src, alt, dialogAlt }: ProjectImageProps) {
   );
 }
 
-// Project metadata with images
 const projects = [
   {
-    id: "fox-croft",
-    name: "Fox Croft",
-    category: "new-builds",
-    location: "Atlanta, GA",
-    type: "New Construction",
-    description: "Custom new construction residence featuring indoor-outdoor living and a Neptune spa pool.",
-    link: "/projects/fox-croft",
-    images: Array.from({ length: 58 }, (_, i) => {
-      const num = (i + 1).toString().padStart(2, '0');
-      return `/fox-croft-photos/${num}-Foxcroft Rd NW-${i + 1}.jpg`;
-    })
+    id: "pool-construction",
+    name: "Pool Construction",
+    category: "construction",
+    location: "Utah",
+    type: "New Pool Construction",
+    description: "From the ground up pool constructions. We help you place the pool in the best spot in your home to make the most of every space in your backyard.",
+    link: "/services",
+    images: Array.from({ length: 10 }, (_, i) => `/bestway-images/gallery-${i + 1}.webp`)
   },
   {
-    id: "stone-creek",
-    name: "Stone Creek Interior",
-    category: "new-builds",
-    location: "Woodstock, GA",
-    type: "New Construction",
-    description: "Luxury custom home on nearly two acres with chef's kitchen and terrace-level entertainment space.",
-    link: "/projects/stone-creek",
-    images: Array.from({ length: 12 }, (_, i) => {
-      const num = (i + 1).toString().padStart(2, '0');
-      return `/project-stone-creek/205 Stone Creek Ct High Res_${num}.jpg`;
-    })
+    id: "pool-repairs",
+    name: "Pool Repairs",
+    category: "repairs",
+    location: "Utah",
+    type: "Pool Repair",
+    description: "Expert pool repair services to restore your pool to its best condition. Professional, responsive craftsmanship you can trust.",
+    link: "/services",
+    images: Array.from({ length: 10 }, (_, i) => `/bestway-images/gallery-${i + 11}.webp`)
   },
   {
-    id: "avondale",
-    name: "Avondale Residence",
-    category: "new-builds",
-    location: "Atlanta, GA",
-    type: "New Construction",
-    description: "Modern luxury new build featuring spa-inspired master bath and custom built-ins throughout.",
-    link: "/projects/avondale",
-    images: Array.from({ length: 12 }, (_, i) => {
-      const num = (i + 1).toString().padStart(2, '0');
-      return `/avondale/1224 Avondale Ave SE High Res_${num}.jpg`;
-    })
-  },
-  {
-    id: "renaissance",
-    name: "Renaissance",
-    category: "remodels",
-    location: "Atlanta, GA",
-    type: "Basement Remodel",
-    description: "Complete basement transformation featuring a custom bar, wellness spa with sauna and cold plunge.",
-    link: "/projects/okun",
-    images: Array.from({ length: 58 }, (_, i) => {
-      const num = (i + 1).toString().padStart(2, '0');
-      return `/okun-photos/${num}-okun-${i + 1}.jpg`;
-    })
-  },
-  {
-    id: "post-oak",
-    name: "Post Oak Basement",
-    category: "remodels",
-    location: "Marietta, GA",
-    type: "Basement Remodel",
-    description: "Luxurious basement transformation with custom finishes and sophisticated entertaining spaces.",
-    link: "/projects/post-oak-basement",
-    images: Array.from({ length: 14 }, (_, i) => {
-      const num = (i + 1).toString().padStart(2, '0');
-      return `/anderson-basement/3624 Post Oak Tritt Rd High Res_${num}.jpg`;
-    })
-  },
-  {
-    id: "pharoah",
-    name: "Pharoah Kitchen",
-    category: "remodels",
-    location: "Marietta, GA",
-    type: "Kitchen Remodel",
-    description: "Stunning kitchen transformation featuring custom cabinetry and premium appliances.",
-    link: "/projects/pharoah-kitchen",
-    images: [1, 2, 3, 4, 5, 7, 8, 9, 10, 11].map(i => {
-      const num = i.toString().padStart(2, '0');
-      return `/pharoah-kitchen/103 American Pharoah Wy High Res_${num}.jpg`;
-    })
+    id: "pool-remodeling",
+    name: "Pool Remodeling",
+    category: "remodeling",
+    location: "Utah",
+    type: "Pool Remodel",
+    description: "Complete pool remodeling from tile and plaster to coping and shotcrete. Over 50 color and finish options available.",
+    link: "/services",
+    images: Array.from({ length: 10 }, (_, i) => `/bestway-images/gallery-${i + 21}.webp`)
   }
 ];
 
 export default function Gallery() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
 
-  // Get filtered projects
   const filteredProjects = useMemo(() => {
     const list = activeFilter === "all"
       ? projects
@@ -174,12 +124,11 @@ export default function Gallery() {
 
   return (
     <Layout>
-      {/* Hero Section */}
       <section className="relative h-[60vh] flex items-end justify-center overflow-hidden">
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `url(/gallery-hero.png)`,
+            backgroundImage: `url(/bestway-images/gallery-4.webp)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -191,18 +140,15 @@ export default function Gallery() {
         <div className="absolute bottom-16 left-0 right-0 z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-white leading-tight mb-4" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-              <div className="text-4xl md:text-5xl lg:text-6xl">Our</div>
-              <div className="text-4xl md:text-5xl lg:text-6xl italic">Portfolio</div>
+              <div className="text-4xl md:text-5xl lg:text-6xl">Gallery</div>
             </h1>
-            <p className="text-white/90 text-lg md:text-xl max-w-xl">Explore our featured projects across Atlanta and beyond.</p>
+            <p className="text-white/90 text-lg md:text-xl max-w-xl">Explore our pool construction, repairs, and remodeling projects across Utah.</p>
           </div>
         </div>
       </section>
 
-      {/* Main Gallery Section */}
       <section className="bg-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {/* Filter Tabs */}
           <div className="flex gap-6 mb-12 border-b border-gray-200">
             <button
               onClick={() => setActiveFilter("all")}
@@ -215,31 +161,40 @@ export default function Gallery() {
               All Projects
             </button>
             <button
-              onClick={() => setActiveFilter("new-builds")}
+              onClick={() => setActiveFilter("construction")}
               className={`pb-4 font-medium text-lg transition-all ${
-                activeFilter === "new-builds"
+                activeFilter === "construction"
                   ? "text-text-strong border-b-2 border-text-strong"
                   : "text-text hover:text-text-strong"
               }`}
             >
-              New Builds
+              Pool Construction
             </button>
             <button
-              onClick={() => setActiveFilter("remodels")}
+              onClick={() => setActiveFilter("repairs")}
               className={`pb-4 font-medium text-lg transition-all ${
-                activeFilter === "remodels"
+                activeFilter === "repairs"
                   ? "text-text-strong border-b-2 border-text-strong"
                   : "text-text hover:text-text-strong"
               }`}
             >
-              Remodels
+              Repairs
+            </button>
+            <button
+              onClick={() => setActiveFilter("remodeling")}
+              className={`pb-4 font-medium text-lg transition-all ${
+                activeFilter === "remodeling"
+                  ? "text-text-strong border-b-2 border-text-strong"
+                  : "text-text hover:text-text-strong"
+              }`}
+            >
+              Remodeling
             </button>
           </div>
 
           <div className="space-y-24">
             {filteredProjects.map((project) => (
               <div key={project.id} className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                {/* Left Sidebar - Project Info */}
                 <div className="lg:col-span-3">
                   <div className="lg:sticky lg:top-24 bg-bg space-y-4">
                     <div>
@@ -263,15 +218,13 @@ export default function Gallery() {
                         to={project.link}
                         className="inline-block text-text-strong font-medium hover:underline"
                       >
-                        View Full Project →
+                        View Services →
                       </Link>
                     )}
                   </div>
                 </div>
 
-                {/* Right - Image Gallery by Project */}
                 <div className="lg:col-span-9">
-                  {/* Project Images - Masonry Grid */}
                   <div 
                     className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-[240px] md:auto-rows-[320px] lg:auto-rows-[360px] grid-flow-row-dense"
                     data-gallery-grid
@@ -292,18 +245,17 @@ export default function Gallery() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-24" style={{backgroundColor: '#eae3d7'}}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="text-3xl md:text-4xl text-text-strong mb-4" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
             Ready to Start Your Project?
           </h3>
           <p className="text-lg md:text-xl text-text mb-8">
-            Let's discuss your vision and bring it to life. Schedule a private consultation with our team.
+            Experience comprehensive Pool Construction, Repairs and Remodeling services in Utah. Contact us for a free consultation.
           </p>
           <Link to="/contact">
             <button className="bg-black text-white px-8 py-4 rounded-full text-base md:text-lg font-medium hover:bg-black/90 transition-colors">
-              Schedule Your Consultation
+              Free Consultation
             </button>
           </Link>
         </div>

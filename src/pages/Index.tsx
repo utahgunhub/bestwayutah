@@ -1,93 +1,38 @@
 import Layout from "@/components/Layout";
 import Hero from "@/components/Hero";
-import ServiceCard from "@/components/ServiceCard";
-import ProjectCard from "@/components/ProjectCard";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState, useCallback } from "react";
-import { 
-  ChefHat, 
-  Bath, 
-  Home, 
-  Plus, 
-  Palette,
-  Star,
-  Quote
-} from "lucide-react";
-// Using gallery images instead of assets
-const bathroomProject = "/avondale/1224 Avondale Ave SE High Res_05.jpg";
-const livingRoomProject = "/fox-croft-photos/12-Foxcroft Rd NW-12.jpg";
-const heroKitchen = "/fox-croft-photos/05-Foxcroft Rd NW-5.jpg";
 
-const services = [
-  {
-    icon: <ChefHat size={32} />,
-    title: "Kitchen Remodeling",
-    description: "Transform your kitchen into the heart of your home with custom cabinetry, modern appliances, and thoughtful design.",
-    href: "/services",
-    image: heroKitchen
-  },
-  {
-    icon: <Bath size={32} />,
-    title: "Bathroom Renovation",
-    description: "Create your personal spa retreat with luxurious fixtures, custom tile work, and optimal functionality.",
-    href: "/services",
-    image: bathroomProject
-  },
-  {
-    icon: <Home size={32} />,
-    title: "Whole Home Remodel",
-    description: "Reimagine your entire living space with comprehensive renovation that maximizes comfort and style.",
-    href: "/services",
-    image: livingRoomProject
-  }
-];
-
-const featuredProjects = [
-  {
-    title: "Modern Farmhouse Kitchen",
-    location: "Atlanta, Georgia",
-    image: heroKitchen,
-    href: "/gallery",
-    category: "Kitchen"
-  },
-  {
-    title: "Spa-Inspired Bathroom",
-    location: "Charleston, South Carolina", 
-    image: bathroomProject,
-    href: "/gallery",
-    category: "Bathroom"
-  },
-  {
-    title: "Open Concept Living",
-    location: "Atlanta, Georgia",
-    image: livingRoomProject,
-    href: "/gallery", 
-    category: "Whole Home"
-  }
-];
+const galleryImages = Array.from({ length: 30 }, (_, i) => `/bestway-images/gallery-${i + 1}.webp`);
 
 const whyChooseItems = [
   {
-    title: "Transparent & Frequent Communication",
+    title: "Expertise and Specialized Knowledge",
     text:
-      "From preconstruction to project completion, we keep you informed every step of the way. Our proactive communication approach means no surprises, just clear updates, regular check ins, and immediate access to your project team whenever you need answers.",
+      "Bestway Utah is a pool construction, repair, and remodeling company that offers multiple benefits in terms of expertise, service, warranty, efficiency, and customer satisfaction.",
   },
   {
-    title: "High-Touch Organization with White Glove Philosophy",
+    title: "One-Stop-Shop Service",
     text:
-      "Experience a level of service that goes beyond construction. Our white glove approach means careful attention to every detail, organized workflows that respect your time and property, and a commitment to excellence that shows in every interaction.",
+      "We take pride in having a full team for all of our projects. Our customers don't have to wait for a 2nd company to come in and do the work. Our team works quickly, very cleanly, and by doing everything in-house, our customers will save a lot of money.",
   },
   {
-    title: "Price Certainty You Can Trust",
+    title: "Warranty and After-Sales Service",
     text:
-      "The numbers we agree upon in preconstruction are the numbers you will pay at completion. No hidden fees, no unexpected costs, no budget creep. We honor our commitments and provide complete financial transparency from start to finish.",
+      "Trust our full-service expertise to guide you smoothly through the entire construction, repairs and remodeling process. We'll collaborate closely with you every step of the way, ensuring your reimagined home exceeds your expectations and stands strong for years to come.",
   },
   {
-    title: "Timeline Expectations You Can Count On",
+    title: "Efficiency and Cost Savings",
     text:
-      "We do not just promise a timeline. We deliver on it. Our proven project management process, experienced team coordination, and realistic scheduling keep your project on track. When we commit to a completion date, we mean it.",
+      "We have a great team of professionals specialized in the sector, as well as all the auxiliary machinery necessary for the completion of the projects. Innovation and best practices drive everything we do.",
   },
+];
+
+const stats = [
+  { label: "Pool construction", value: "150" },
+  { label: "Excavation and Rebar", value: "100" },
+  { label: "Satisfied customers", value: "250" },
 ];
 
 const Index = () => {
@@ -100,9 +45,8 @@ const Index = () => {
   const visibilityRatiosRef = useRef<number[]>(new Array(whyChooseItems.length).fill(0));
   const testimonialRef = useRef<HTMLDivElement>(null);
   
-  const fullText = "More than just a home builder, we are dream weavers";
+  const fullText = "We Are Trusted by More Than 250+ Clients";
 
-  // Custom hook for fade-in animation
   const useFadeIn = () => {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
@@ -139,7 +83,6 @@ const Index = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Typewriter animation effect
   const typeText = useCallback(() => {
     if (isTyping) return;
     
@@ -155,7 +98,7 @@ const Index = () => {
         clearInterval(typeInterval);
         setIsTyping(false);
       }
-    }, 50); // Adjust speed here (lower = faster)
+    }, 50);
     
     return () => clearInterval(typeInterval);
   }, [fullText, isTyping]);
@@ -200,7 +143,6 @@ const Index = () => {
     return () => observer.disconnect();
   }, [activeWhyIndex]);
 
-  // Testimonial intersection observer for typewriter effect
   useEffect(() => {
     const testimonialObserver = new IntersectionObserver(
       (entries) => {
@@ -220,9 +162,7 @@ const Index = () => {
     return () => testimonialObserver.disconnect();
   }, [typeText, isTyping, displayedText]);
 
-  // Create fade-in animations for each section
   const designedSection = useFadeIn();
-  const gallerySection = useFadeIn();
   const whyChooseHeader = useFadeIn();
   const servicesSection = useFadeIn();
   const ourGallerySection = useFadeIn();
@@ -230,15 +170,15 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
       <Hero 
-        title="Designed for You, Built for Life"
-        subtitle="New home plans and thoughtful remodels built with care and precision."
-        backgroundVideoSrc="/foxcroft-hero.mp4"
+        title="Specialists in Pool Construction, Repairs and Remodeling"
+        titleLine2="Bringing Your Dream Home to Life"
+        subtitle="We help you place the pool in the best spot in your home to make the most of every space in your backyard."
+        backgroundVideoSrc="/bestway-images/hero-video.mp4"
         darkerOverlay={true}
+        ctaText="Call for Visit"
       />
 
-      {/* Our Services */}
       <section className="py-20 bg-bg-alt">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
@@ -249,14 +189,14 @@ const Index = () => {
           >
             <div>
               <h2 className="text-5xl md:text-4xl lg:text-5xl font-bold text-text-strong mb-8 leading-tight" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-                Custom Home<br />
-                <span className="italic">Builders</span>
+                From the Ground Up<br />
+                <span className="italic">Pool Constructions</span>
               </h2>
             </div>
             <div>
-                    <p className="text-base text-text mb-8 leading-relaxed">
-                      Bradford Custom Homes is the choice for discerning homeowners who demand transparency. Our homes don't just elevate wellbeing and craftsmanship; they inspire awe, endure as timeless masterpieces, and embody the unique legacy of those privileged enough to live within them.
-                    </p>
+              <p className="text-base text-text mb-8 leading-relaxed">
+                We help you place the pool in the best spot in your home to make the most of every space in your backyard. We take pride in having a full team for all of our projects.
+              </p>
               <div className="flex flex-col sm:flex-row gap-8">
                 <Link to="/contact" onClick={() => {
                   setTimeout(() => {
@@ -267,11 +207,11 @@ const Index = () => {
                   }, 100);
                 }} className="flex items-center gap-3 text-text-strong hover:opacity-80 transition-opacity cursor-pointer">
                   <div className="w-4 h-4 bg-text-strong"></div>
-                  <span className="text-sm font-medium uppercase tracking-wide">Get In Touch</span>
+                  <span className="text-sm font-medium uppercase tracking-wide">Contact Us</span>
                 </Link>
-                <Link to="/gallery" className="flex items-center gap-3 text-text-strong hover:opacity-80 transition-opacity cursor-pointer">
+                <Link to="/about" className="flex items-center gap-3 text-text-strong hover:opacity-80 transition-opacity cursor-pointer">
                   <div className="w-4 h-4 border-2 border-text-strong bg-bg-alt"></div>
-                  <span className="text-sm font-medium uppercase tracking-wide">Discover Portfolio</span>
+                  <span className="text-sm font-medium uppercase tracking-wide">Read More About Us</span>
                 </Link>
               </div>
             </div>
@@ -280,12 +220,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Gallery Images with Parallax - Full Width */}
       <div 
         className="overflow-hidden w-full pb-20" 
         style={{backgroundColor: '#eae3d7'}}
       >
-        {/* First Row - moves left */}
         <div 
           className="flex gap-2 mb-2 px-6"
           style={{
@@ -293,14 +231,7 @@ const Index = () => {
             willChange: 'transform'
           }}
         >
-          {[
-            '/homepage-paralax-images/LaRuche_MacBuilt_17 Gilmer Way_Obie Entry-08.jpg',
-            '/homepage-paralax-images/58-Foxcroft Rd NW-58.jpg',
-            '/homepage-paralax-images/LaRuchePhoto-MacBuilt-147CarlSandersDr-Daytime-6.jpg',
-            '/homepage-paralax-images/31-Foxcroft Rd NW-31.jpg',
-            '/homepage-paralax-images/LaRuche_MacBuilt_17 Gilmer Way_Obie Entry-05.jpg',
-            '/homepage-paralax-images/18-Foxcroft Rd NW-18.jpg'
-          ].map((src, idx) => (
+          {galleryImages.slice(0, 6).map((src, idx) => (
             <div key={idx} className="flex-shrink-0 w-96 h-72 overflow-hidden">
               <img 
                 src={src}
@@ -311,7 +242,6 @@ const Index = () => {
           ))}
         </div>
 
-        {/* Second Row - moves right */}
         <div 
           className="flex gap-2 justify-end px-6"
           style={{
@@ -319,17 +249,11 @@ const Index = () => {
             willChange: 'transform'
           }}
         >
-          {[
-            '/homepage-paralax-images/LaRuchePhoto-MacBuilt-147CarlSandersDr-Daytime-2.jpg',
-            '/homepage-paralax-images/04-Foxcroft Rd NW-4.jpg',
-            '/homepage-paralax-images/LaRuchePhoto-MacBuilt-147CarlSandersDr-Daytime-12.jpg',
-            '/homepage-paralax-images/08-Foxcroft Rd NW-8.jpg',
-            '/homepage-paralax-images/LaRuche_MacBuilt_17 Gilmer Way_Obie Entry-00.jpg'
-          ].map((src, idx) => (
+          {galleryImages.slice(6, 11).map((src, idx) => (
             <div key={`row2-${idx}`} className="flex-shrink-0 w-96 h-72 overflow-hidden">
               <img 
                 src={src}
-                alt={`Gallery ${idx + 8}`}
+                alt={`Gallery ${idx + 7}`}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -337,7 +261,6 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Why Choose Bradford - Header */}
       <section className="pt-20 pb-40" style={{backgroundColor: '#eae3d7'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
@@ -347,24 +270,22 @@ const Index = () => {
             }`}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-text-strong mb-4" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-              Our Promise to You
+              Why Choose Us?
             </h2>
             <p className="text-xl text-text max-w-2xl mx-auto">
-              Four core commitments that set Bradford Custom Homes apart: transparency, service excellence, budget certainty, and reliable timelines.
+              Specialists in comprehensive Pool Construction, Repairs and Remodeling Excellence. When it comes to transforming your living space, trust the experts at Bestway Utah.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Bradford - Scrollytelling with full-width images */}
       <section className="relative" style={{backgroundColor: '#F5F1ED'}}>
-        {/* Full-width background images */}
         <div className="absolute inset-0">
           {[
-            '/3rd-section.png', // Transparent & Frequent Communication
-            '/2nd-section.png', // Price Certainty You Can Trust
-            '/home-gallery/home-gallery-1.png', // High-Touch Organization
-            '/4th-home-page.jpg'  // Timeline Expectations
+            '/bestway-images/excavation-and-rebar.webp',
+            '/bestway-images/plumbing.webp',
+            '/bestway-images/shotcrete.webp',
+            '/bestway-images/tile.webp',
           ].map((src, idx) => (
             <div
               key={idx}
@@ -374,36 +295,17 @@ const Index = () => {
             >
               <img
                 src={src}
-                alt={`Why Choose Bradford ${idx + 1}`}
+                alt={`Why Choose Bestway Utah ${idx + 1}`}
                 className="w-full h-full object-cover"
               />
-              {/* Dark overlay for text readability */}
               <div className="absolute inset-0 bg-text-strong/40"></div>
-              {/* Gold stamp for first 2 sections */}
-              {idx < 2 && (
-                <img
-                  src="/gold-stamp.png"
-                  alt="Gold Award Winner"
-                  className="absolute bottom-8 right-8 w-20 md:w-24 lg:w-28 z-10"
-                />
-              )}
-              {/* Silver stamp for 3rd section */}
-              {idx === 2 && (
-                <img
-                  src="/silver-stamp.png"
-                  alt="Silver Award Winner"
-                  className="absolute bottom-8 right-8 w-20 md:w-24 lg:w-28 z-10"
-                />
-              )}
             </div>
           ))}
         </div>
 
-        {/* Content overlay */}
         <div className="relative z-10 pt-12 pb-0 md:pb-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              {/* Left: Sticky text that updates with scroll */}
               <div className="sticky top-1/2 -translate-y-1/2 self-start mt-24 md:mt-40 lg:mt-56">
                 <div 
                   className={`transition-all duration-300 ease-in-out transform ${
@@ -419,16 +321,13 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* Right: Spacer to maintain layout */}
               <div className="h-[240vh] md:h-[280vh]">
-                {/* This div maintains the scroll height for the sticky positioning */}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Our Services */}
       <section className="pt-16 md:pt-0 pb-16" style={{backgroundColor: '#F5F1ED'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
@@ -437,65 +336,69 @@ const Index = () => {
               servicesSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-          {/* Content row */}
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-            {/* Text content - 1/4 of row */}
             <div className="space-y-6 lg:col-span-2">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-strong" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-                What We <span className="italic">Build</span>
+                Pool Construction, Repairs<br />and <span className="italic">Remodeling</span>
               </h2>
               <div>
                 <p className="text-base text-text leading-relaxed">
-                  We design and build custom homes tailored to your lot, lifestyle, and vision. Our team also delivers refined renovations that improve flow, function, and everyday comfort.
+                  Experience comprehensive Pool Construction, Repairs and Remodeling services in Utah. We are expert professionals with over 16 years of experience in the industry, prioritizing customer satisfaction and meeting customer needs.
                 </p>
               </div>
               
               <div className="flex items-center gap-3 mt-6">
-                <Link to="/new-construction" className="flex items-center gap-3 text-text-strong hover:opacity-80 transition-opacity cursor-pointer">
+                <Link to="/services" className="flex items-center gap-3 text-text-strong hover:opacity-80 transition-opacity cursor-pointer">
                   <div className="w-4 h-4 bg-text-strong"></div>
-                  <span className="text-sm font-medium uppercase tracking-wide">VIEW NEW BUILDS</span>
+                  <span className="text-sm font-medium uppercase tracking-wide">View Services</span>
                 </Link>
+              </div>
+
+              <div className="grid grid-cols-3 gap-6 pt-8">
+                {stats.map((stat) => (
+                  <div key={stat.label}>
+                    <p className="text-3xl md:text-4xl font-bold text-text-strong">{stat.value}</p>
+                    <p className="text-xs md:text-sm text-text mt-1">{stat.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Featured New Builds - two horizontal cards stacked */}
             <div className="lg:col-span-3 space-y-10">
-              {/* Project 1: Fox Croft */}
               <div>
                 <div className="w-full h-56 md:h-64 overflow-hidden bg-bg-muted">
                   <img 
-                    src="/fox-croft-photos/01-Foxcroft Rd NW-1.jpg"
-                    alt="Fox Croft"
+                    src="/bestway-images/plaster.webp"
+                    alt="Plaster"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="mt-4">
                   <Link 
-                    to="/projects/fox-croft"
+                    to="/services"
                     className="flex items-center gap-3 text-text-strong hover:opacity-80 transition-opacity"
                   >
                     <div className="w-4 h-4 border-2 border-text-strong bg-transparent"></div>
-                    <span className="text-sm font-medium uppercase tracking-wide">Fox Croft</span>
+                    <span className="text-sm font-medium uppercase tracking-wide">Plaster</span>
                   </Link>
                 </div>
               </div>
 
-              {/* Project 2: Stone Creek Interior */}
               <div>
                 <div className="w-full h-56 md:h-64 overflow-hidden bg-bg-muted">
                   <img 
-                    src="/project-stone-creek/205 Stone Creek Ct High Res_01.jpg"
-                    alt="Stone Creek Interior"
+                    src="/bestway-images/copping.webp"
+                    alt="Copping"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="mt-4">
                   <Link 
-                    to="/projects/stone-creek"
+                    to="/services"
                     className="flex items-center gap-3 text-text-strong hover:opacity-80 transition-opacity"
                   >
                     <div className="w-4 h-4 border-2 border-text-strong bg-transparent"></div>
-                    <span className="text-sm font-medium uppercase tracking-wide">Stone Creek Interior</span>
+                    <span className="text-sm font-medium uppercase tracking-wide">Copping</span>
                   </Link>
                 </div>
               </div>
@@ -505,12 +408,11 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonial */}
       <section ref={testimonialRef} className="relative flex items-center justify-center overflow-hidden" style={{ height: '130vh' }}>
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('/new-builds5.png')`,
+            backgroundImage: `url('/bestway-images/gallery-15.webp')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -532,10 +434,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Our Gallery */}
       <section className="py-24 relative overflow-hidden" style={{backgroundColor: '#eae3d7'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Heading and copy */}
           <div 
             ref={ourGallerySection.ref}
             className={`max-w-xl transition-all duration-1000 ${
@@ -543,20 +443,19 @@ const Index = () => {
             }`}
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-strong mb-6" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-              Our Gallery
+              Gallery
             </h2>
             <p className="text-sm text-text mb-6">
-              Explore our gallery to see inspired new builds and elevated remodels from across our portfolio. 
-              Discover thoughtful details, beautiful materials, and moments that make a house feel like home.
+              Explore our gallery to see inspired pool construction, repairs, and remodeling projects across Utah. 
+              Discover thoughtful details, beautiful finishes, and pools built to last.
             </p>
             <Link to="/gallery" className="flex items-center gap-3 text-text-strong hover:opacity-80 transition-opacity">
               <div className="w-4 h-4 bg-text-strong"></div>
-              <span className="text-sm font-medium uppercase tracking-wide">VIEW ALL IMAGES</span>
+              <span className="text-sm font-medium uppercase tracking-wide">View All Images</span>
             </Link>
           </div>
         </div>
 
-        {/* Edge-to-edge carousel */}
         <div 
           ref={galleryCarousel.ref}
           className={`-mx-4 sm:-mx-6 lg:-mx-8 mt-8 lg:mt-12 transition-all duration-1000 ${
@@ -565,22 +464,7 @@ const Index = () => {
         >
           <Carousel opts={{ loop: true, align: 'start' }} className="w-full">
             <CarouselContent>
-              {[
-                '/new-builds6.jpg',
-                '/home-gallery/home-gallery-3.png',
-                '/new-builds7.jpg',
-                '/home-gallery/home-gallery-4.png',
-                '/home-gallery/home-gallery-5.png',
-                '/home-gallery/home-gallery-6.png',
-                '/home-gallery/home-gallery-7.png',
-                '/home-gallery/home-gallery-8.png',
-                '/home-gallery/home-gallery-9.png',
-                '/home-gallery/home-gallery-10.png',
-                '/home-gallery/home-gallery-11.png',
-                '/home-gallery/home-gallery-12.png',
-                '/home-gallery/home-gallery-13.png',
-                '/home-gallery/home-gallery-14.png'
-              ].map((src, idx) => (
+              {galleryImages.map((src, idx) => (
                 <CarouselItem key={idx} className="basis-[85%] md:basis-[75%] lg:basis-[70%]">
                   <div className="w-full h-[26rem] md:h-[32rem] lg:h-[36rem] overflow-hidden">
                     <img

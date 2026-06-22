@@ -2,7 +2,6 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { 
-  ChefHat,
   Home,
   Star,
   MapPin,
@@ -11,120 +10,64 @@ import {
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
-const differenceItems = [
+const bestwayMethod = [
   {
-    title: "Precision Craftsmanship",
-    description: "Every detail matters. Our skilled craftsmen bring decades of experience to ensure flawless execution from start to finish.",
-  },
-  {
-    title: "Client-First Focus",
-    description: "Your vision drives everything we do. We listen, collaborate, and keep you informed every step of the way.",
-  },
-  {
-    title: "Proven Process",
-    description: "Our systematic approach eliminates surprises and ensures your project stays on schedule and within budget.",
-  }
-];
-
-const bradfordMethod = [
-  {
-    icon: <ChefHat size={32} />,
-    title: "Discovery & Consultation",
-    subtitle: "Understanding your vision",
-    description: "We start by listening. Your needs, dreams, and lifestyle guide our approach to creating the perfect space for your family."
+    icon: <MapPin size={32} />,
+    title: "Finding the Best Location for the Pool",
+    subtitle: "Optimal placement",
+    description: "We help you place the pool in the best spot in your home to make the most of every space in your backyard."
   },
   {
     icon: <Pencil size={32} />,
-    title: "Design & Architecture",
-    subtitle: "Bringing plans to life",
-    description: "Our design team translates your vision into detailed plans, combining aesthetic beauty with practical functionality."
+    title: "Engineering and City Permits",
+    subtitle: "Handled for you",
+    description: "We handle the engineering and city permits for new pool constructions, ensuring full compliance with all local building codes."
   },
   {
     icon: <Home size={32} />,
-    title: "Precision Construction",
-    subtitle: "Expert execution at every turn",
-    description: "Skilled craftsmen bring the plans to reality with meticulous attention to quality, timeline, and your daily comfort."
+    title: "Excavation and Plumbing",
+    subtitle: "Foundation work",
+    description: "Our experienced team uses specialized equipment for precise excavation, followed by meticulous plumbing installation to the highest standards."
   },
   {
     icon: <Star size={32} />,
-    title: "Final Walkthrough",
-    subtitle: "Obsessed with the details",
-    description: "We inspect every corner, ensuring perfection before you see it. Nothing is complete until it exceeds your expectations."
+    title: "Rebar Installation",
+    subtitle: "Engineer's specifications",
+    description: "Rebar installation always follows the engineer's specifications, providing essential structural reinforcement for the pool shell."
   },
   {
     icon: <LifeBuoy size={32} />,
-    title: "Ongoing Support",
-    subtitle: "Here for you, even after move-in",
-    description: "Our relationship doesn't end at completion. We're always here to support you and ensure your satisfaction for years to come."
+    title: "Tile, Copping, Shotcrete & Plaster",
+    subtitle: "Finishing excellence",
+    description: "We are among the best in the state for shotcrete application and offer over 50 color and finish options for plastering."
   }
 ];
 
 const teamMembers = [
   {
-    name: "Brad Robinson",
-    title: "President",
-    image: "/team-pics/brad.jpg"
+    name: "Construction Team",
+    title: "Pool Construction Specialists",
+    image: "/bestway-images/gallery-6.webp"
   },
   {
-    name: "Cody Shiver",
-    title: "Chief Financial Officer",
-    image: "/team-pics/cody.png"
+    name: "Excavation Crew",
+    title: "Excavation and Rebar",
+    image: "/bestway-images/excavation-and-rebar.webp"
   },
   {
-    name: "Ryan MacDowell",
-    title: "Director of Operations",
-    image: "/team-pics/ryan-macdowell.jpg.webp"
+    name: "Plumbing Team",
+    title: "Plumbing Specialists",
+    image: "/bestway-images/plumbing.webp"
   },
   {
-    name: "Marlon Hurtado",
-    title: "VP of Operations",
-    image: "/team-pics/marlon.jpg.webp"
+    name: "Finishing Team",
+    title: "Tile, Plaster & Copping",
+    image: "/bestway-images/tile.webp"
   },
   {
-    name: "Justin Hill",
-    title: "Pre-Construction Manager",
-    image: "/team-pics/justin-hill.jpg"
-  },
-  {
-    name: "Connor Lipham",
-    title: "Project Manager",
-    image: "/team-pics/connor-lipham.jpg.webp"
-  },
-  {
-    name: "Will Cronic",
-    title: "Project Manager",
-    image: "/team-pics/will-chronic.png"
-  },
-  {
-    name: "Kevin Nguyen",
-    title: "Marketing Manager",
-    image: "/team-pics/kevin-nguyen.jpg.webp"
-  },
-  {
-    name: "Kelly Overcash",
-    title: "Office Manager",
-    image: "/team-pics/kelly-overcash.jpg"
-  }
-];
-
-const serviceAreas = [
-  {
-    city: "Atlanta",
-    state: "Georgia",
-    description: "Serving the metro area and surrounding communities",
-    image: "/home-gallery/home-gallery-1.png"
-  },
-  {
-    city: "Charleston",
-    state: "South Carolina",
-    description: "Historic charm meets modern living",
-    image: "/home-gallery/home-gallery-2.png"
-  },
-  {
-    city: "Highlands",
-    state: "North Carolina",
-    description: "Mountain retreats and luxury escapes",
-    image: "/home-gallery/home-gallery-3.png"
+    name: "Customer Service",
+    title: "Client Relations",
+    image: "/bestway-images/gallery-10.webp"
   }
 ];
 
@@ -137,7 +80,6 @@ export default function About() {
   const teamSectionRef = useRef<HTMLDivElement>(null);
   const [teamParallax, setTeamParallax] = useState(0);
 
-  // Fade-in hook
   const useFadeIn = (threshold = 0.1) => {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
@@ -169,27 +111,21 @@ export default function About() {
       }
       setScrollY(window.scrollY);
       
-      // Calculate team parallax
       if (teamSectionRef.current) {
         const rect = teamSectionRef.current.getBoundingClientRect();
         const sectionTop = rect.top;
         const windowHeight = window.innerHeight;
-        
-        // Align when section is centered/visible in viewport
-        // Progress goes from 0 to 1 as section moves from bottom to middle of screen
         const scrollProgress = (windowHeight - sectionTop) / (windowHeight * 0.5);
         const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
-        
         setTeamParallax(clampedProgress);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Calculate icon position along the timeline as user scrolls - smooth continuous movement
   useEffect(() => {
     let ticking = false;
 
@@ -209,9 +145,7 @@ export default function About() {
         const containerBottom = rect.bottom;
         const containerHeight = rect.height;
         const viewportHeight = window.innerHeight;
-        const viewportCenter = viewportHeight / 2;
 
-        // Show icon when any part of timeline is on screen
         if (containerBottom < 0 || containerTop > viewportHeight) {
           setShowFixedIcon(false);
           ticking = false;
@@ -220,17 +154,12 @@ export default function About() {
 
         setShowFixedIcon(true);
 
-        // Calculate smooth continuous position
-        // Icon should be at viewportCenter and move through the timeline
-        let iconTop = viewportCenter - containerTop;
-        
-        // Clamp to container bounds (stays at start/end when scrolling past)
+        let iconTop = viewportHeight / 2 - containerTop;
         iconTop = Math.max(0, Math.min(containerHeight, iconTop));
         setIconTopPosition(iconTop);
 
-        // Calculate which step we're on based on position
         const progress = iconTop / containerHeight;
-        const stepCount = bradfordMethod.length;
+        const stepCount = bestwayMethod.length;
         const stepIndex = Math.max(0, Math.min(stepCount - 1, Math.floor(progress * stepCount)));
         setActiveStepIndex(stepIndex);
 
@@ -249,14 +178,13 @@ export default function About() {
   const differenceSection = useFadeIn();
   const methodSection = useFadeIn();
   const serviceAreasSection = useFadeIn();
-  const whyBradford1 = useFadeIn(0.4);
-  const whyBradford2 = useFadeIn(0.4);
+  const whyBestway1 = useFadeIn(0.4);
+  const whyBestway2 = useFadeIn(0.4);
   
-  // Typewriter effect for closing quote
   const [typewriterText, setTypewriterText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const typewriterRef = useRef<HTMLDivElement>(null);
-  const fullText = "Choose Bradford for excellence, expertise, and a team dedicated to turning your dreams into reality.";
+  const fullText = "Choose Bestway Utah for excellence, expertise, and a team dedicated to turning your pool dreams into reality.";
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -279,7 +207,7 @@ export default function About() {
     if (isTyping && typewriterText.length < fullText.length) {
       const timeout = setTimeout(() => {
         setTypewriterText(fullText.slice(0, typewriterText.length + 1));
-      }, 30); // Speed of typing (30ms per character)
+      }, 30);
       
       return () => clearTimeout(timeout);
     } else if (typewriterText.length === fullText.length) {
@@ -289,30 +217,26 @@ export default function About() {
 
   return (
     <Layout>
-      {/* Hero Section */}
       <section className="relative h-[90vh] md:h-screen flex items-end justify-center overflow-hidden">
-        {/* Background */}
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('/fox-croft-photos/01-Foxcroft Rd NW-1.jpg')`,
+            backgroundImage: `url('/bestway-images/gallery-7.webp')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
           }}
         >
-          {/* Overlay */}
           <div className="absolute inset-0 bg-text-strong/40"></div>
         </div>
 
-        {/* Text at bottom left - aligned with navbar */}
         <div className="absolute bottom-20 md:bottom-28 lg:bottom-32 left-0 right-0 z-10">
           <div className="w-[80%] mx-auto">
             <h1 className="text-white leading-tight mb-6" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-              <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl">Meet</div>
-              <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl italic">Bradford</div>
+              <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl">About</div>
+              <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl italic">Us</div>
             </h1>
-            <p className="text-white/90 text-lg md:text-xl lg:text-2xl mb-6 max-w-xl">Crafted by a team that treats your home like our own.</p>
+            <p className="text-white/90 text-lg md:text-xl lg:text-2xl mb-6 max-w-xl">We are expert professionals with over 16 years of experience in the industry.</p>
             <Link to="/contact" onClick={() => {
               setTimeout(() => {
                 const formElement = document.getElementById('contact-form');
@@ -322,14 +246,13 @@ export default function About() {
               }, 100);
             }}>
               <button className="bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-white/90 transition-colors">
-                Schedule Your Private Consultation
+                Free Consultation
               </button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Our Difference - Clean Layout */}
       <section id="difference" className="py-20" style={{backgroundColor: '#F5F1ED'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
@@ -340,34 +263,31 @@ export default function About() {
           >
             <div>
               <h2 className="text-4xl md:text-5xl font-bold text-text-strong mb-2 leading-tight">
-                What Sets Us Apart
+                Why Choose Us?
               </h2>
               <p className="text-xl md:text-2xl text-text italic">
-                Every detail matters
+                16+ years of excellence
               </p>
             </div>
             <div>
               <p className="text-base text-text leading-relaxed">
-                Our skilled craftsmen bring decades of experience to ensure flawless execution from start to finish. Your vision drives everything we do—we listen, collaborate, and keep you informed every step of the way. Our systematic approach eliminates surprises and ensures your project stays on schedule and within budget.
+                Experience comprehensive Pool Construction, Repairs and Remodeling services in Utah. We take pride in having a full team for all of our projects. What does that mean? It means our customers don't have to wait for a 2nd company to come in and do the work. Our team works quickly, very cleanly, and by doing everything in-house, our customers will save a lot of money.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* The Bradford Method - Progressive Timeline */}
       <section className="py-20 relative overflow-hidden">
-        {/* Background image */}
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `url(/bradford-method-bg.png)`,
+            backgroundImage: `url(/bestway-images/shotcrete.webp)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
           }}
         />
-        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/40" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -378,18 +298,16 @@ export default function About() {
             }`}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              The Bradford Method
+              How Do We Do It?
             </h2>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl">
-              Our proven 5-step process ensures your project exceeds expectations
+              Watch how we work — our proven process for pool construction, repairs and remodeling
             </p>
           </div>
 
           <div ref={timelineContainerRef} className="relative">
-            {/* Timeline line - desktop only */}
             <div className="hidden md:block absolute left-16 top-0 bottom-0 w-1 bg-white/40" />
 
-            {/* Icon that moves smoothly along the timeline */}
             {showFixedIcon && (
               <div 
                 className="hidden md:flex absolute left-16 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center shadow-2xl z-50"
@@ -406,7 +324,7 @@ export default function About() {
               </div>
             )}
 
-            {bradfordMethod.map((step, index) => (
+            {bestwayMethod.map((step, index) => (
               <div
                 key={index}
                 className="method-step relative mb-8 last:mb-0 md:pl-32"
@@ -436,12 +354,11 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team Profiles */}
       <section id="team" className="py-20" style={{backgroundColor: '#F5F1ED'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-text-strong mb-12 text-center">
-              Get to Know Our Team
+              Our Expert Team
             </h2>
             
             <div 
@@ -480,89 +397,80 @@ export default function About() {
         </div>
       </section>
 
-      {/* Why Bradford - Alternating Layout */}
       <section className="pt-20 pb-10" style={{backgroundColor: 'rgb(234, 227, 215)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-text-strong mb-4" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-              Why <span className="italic">Bradford?</span>
+              Why <span className="italic">Bestway Utah?</span>
             </h2>
           </div>
 
-          {/* First Row - Text Left, Image Right */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-4 items-center">
-            {/* Left - Text Content */}
             <div 
-              ref={whyBradford1.ref}
+              ref={whyBestway1.ref}
               className={`order-1 transition-all duration-1000 ease-out ${
-                whyBradford1.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+                whyBestway1.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
               }`}
             >
               <h3 className="text-3xl md:text-4xl lg:text-5xl text-text-strong mb-6 leading-tight" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-                Dream Weavers &{' '}
+                Pool Construction, Repairs{' '}
                 <span className="italic block mt-2">
-                  Architects of Imagination
+                  and Remodeling Excellence
                 </span>
               </h3>
               
               <p className="text-base md:text-lg text-text leading-relaxed mb-6">
-                We are a team of dedicated professionals driven by a passion for excellence in crafting homes as unique as the people who live in them.
+                When it comes to transforming your living space, trust the experts at Bestway Utah and experience the difference that true reconstruction expertise can make.
               </p>
               
               <p className="text-base md:text-lg text-text leading-relaxed">
-                Our commitment to quality, innovation, and customer satisfaction sets us apart. We are partners in creating the homes you've always envisioned.
+                Bestway Utah is a pool construction, repair, and remodeling company that offers multiple benefits in terms of expertise, service, warranty, efficiency, and customer satisfaction.
               </p>
             </div>
 
-            {/* Right - Image */}
             <div className="order-2 mb-8 lg:mb-0">
               <div className="overflow-hidden rounded-xl shadow-lg h-[360px]">
                 <img
-                  src="/new-builds5.png"
-                  alt="Dream Weavers & Architects of Imagination"
+                  src="/bestway-images/gallery-12.webp"
+                  alt="Pool Construction Excellence"
                   className="w-full h-full object-cover"
                 />
               </div>
             </div>
           </div>
 
-          {/* Second Row - Image Left, Text Right */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left - Image */}
             <div className="order-2 lg:order-1">
               <div className="overflow-hidden rounded-xl shadow-lg h-[360px]">
                 <img
-                  src="/new-builds6.jpg"
-                  alt="Your Concerns are our Concerns"
+                  src="/bestway-images/plaster.webp"
+                  alt="Customer Satisfaction"
                   className="w-full h-full object-cover"
                 />
               </div>
             </div>
 
-            {/* Right - Text Content */}
             <div 
-              ref={whyBradford2.ref}
+              ref={whyBestway2.ref}
               className={`order-1 lg:order-2 transition-all duration-1000 ease-out ${
-                whyBradford2.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
+                whyBestway2.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
               }`}
             >
               <h3 className="text-3xl md:text-4xl lg:text-5xl text-text-strong mb-6 leading-tight" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-                Your Concerns<br />
-                <span className="italic">are our Concerns</span>
+                Trusted by More<br />
+                <span className="italic">Than 250+ Clients</span>
               </h3>
               
               <p className="text-base md:text-lg text-text leading-relaxed mb-6">
-                We provide a First Class Experience, keeping you informed and connected throughout your project.
+                We help you place the pool in the best spot in your home to make the most of every space in your backyard.
               </p>
               
               <p className="text-base md:text-lg text-text leading-relaxed">
-                Communication is key. Your dedicated project manager and superintendent ensure quick response times from start to finish.
+                Innovation and best practices, warranty and after-sales service, efficiency and cost savings — all delivered with customer convenience and satisfaction at the forefront.
               </p>
             </div>
           </div>
 
-          {/* Bottom Quote Section */}
           <div ref={typewriterRef} className="text-center max-w-4xl mx-auto mt-16">
             <p className="text-2xl md:text-3xl text-text-strong leading-relaxed italic min-h-[120px] flex items-center justify-center" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 300 }}>
               {typewriterText}
@@ -572,11 +480,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* Service Areas - Map View */}
       <section className="py-20 relative overflow-hidden" style={{backgroundColor: '#1A120A'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-start gap-12">
-            {/* Left: Copy */}
             <div 
               ref={serviceAreasSection.ref}
               className={`transition-all duration-1000 lg:col-span-5 ${
@@ -584,10 +490,10 @@ export default function About() {
               }`}
             >
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 italic" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-                Where We Build
+                Services In Your Locality
               </h2>
               <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-8">
-                Atlanta, Georgia / Charleston, South Carolina / Surrounding Areas
+                West Valley City, Utah and surrounding areas
               </p>
               <Link to="/contact" onClick={() => {
                 setTimeout(() => {
@@ -598,17 +504,16 @@ export default function About() {
                 }, 100);
               }}>
                 <Button className="bg-white text-text-strong hover:bg-white/90 px-8 py-6 text-base rounded-full">
-                  Start Your Journey
+                  Contact Us
                 </Button>
               </Link>
             </div>
 
-            {/* Right: Map */}
             <div className="lg:col-span-7">
               <div className="rounded-3xl overflow-hidden shadow-2xl">
                 <img 
-                  src="/map.png" 
-                  alt="Service area map showing Atlanta, Charleston, and surrounding areas"
+                  src="/bestway-images/gallery-20.webp" 
+                  alt="Bestway Utah service area in Utah"
                   className="w-full h-auto"
                 />
               </div>
@@ -616,19 +521,6 @@ export default function About() {
           </div>
         </div>
       </section>
-      {/* Add CSS for animations */}
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </Layout>
   );
 }

@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Instagram, Facebook, Linkedin } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import emailjs from '@emailjs/browser';
 
 export default function Contact() {
@@ -156,7 +156,7 @@ export default function Contact() {
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `url(/contact-hero.png)`,
+            backgroundImage: `url(/bestway-images/gallery-18.webp)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -170,10 +170,10 @@ export default function Contact() {
         <div className="absolute bottom-20 md:bottom-28 lg:bottom-32 left-0 right-0 z-10">
           <div className="w-[80%] mx-auto">
             <h1 className="text-white leading-tight mb-6" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
-              <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl">Let's Build</div>
-              <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl italic">Together</div>
+              <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl">Contact</div>
+              <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl italic">Us</div>
             </h1>
-            <p className="text-white/90 text-lg md:text-xl lg:text-2xl mb-6 max-w-xl">Tell us about your home—we’ll outline scope, timeline, and next steps.</p>
+            <p className="text-white/90 text-lg md:text-xl lg:text-2xl mb-6 max-w-xl">Experience comprehensive Pool Construction, Repairs and Remodeling services in Utah.</p>
             <button 
               onClick={() => {
                 const formElement = document.getElementById('contact-form');
@@ -183,7 +183,7 @@ export default function Contact() {
               }}
               className="bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-white/90 transition-colors"
             >
-              Schedule Your Private Consultation
+              Free Consultation
             </button>
           </div>
         </div>
@@ -199,51 +199,39 @@ export default function Contact() {
                 {/* Logo */}
                 <div>
                   <img 
-                    src="/full-logo-black.png" 
-                    alt="Bradford Custom Homes & Remodeling" 
+                    src="/bestway-images/bestway-logo.png" 
+                    alt="Bestway Utah" 
                     className="h-16 w-auto"
                   />
                 </div>
 
-                {/* Headquarters */}
                 <div>
-                  <p className="text-lg font-semibold text-text-strong mb-2">Headquarters:</p>
-                  <p className="whitespace-pre-line text-text-strong">{`4405 New McEver Rd. Ste. 200\nAcworth, GA 30101`}</p>
+                  <p className="text-lg font-semibold text-text-strong mb-2">Address:</p>
+                  <p className="whitespace-pre-line text-text-strong">{`2340 S Redwood Rd\nWest Valley City, UT 84119`}</p>
                 </div>
 
-                {/* Telephone */}
                 <div>
-                  <p className="text-lg font-semibold text-text-strong mb-2">Telephone:</p>
-                  <p className="text-text-strong">470.835.0595</p>
+                  <p className="text-lg font-semibold text-text-strong mb-2">Email:</p>
+                  <a href="mailto:Bestway.utah@gmail.com" className="text-text-strong hover:text-accent-primary transition-colors">
+                    Bestway.utah@gmail.com
+                  </a>
                 </div>
 
-                {/* Socials */}
                 <div>
-                  <p className="text-lg font-semibold text-text-strong mb-3">Socials:</p>
+                  <p className="text-lg font-semibold text-text-strong mb-2">Contact Us:</p>
+                  <a href="tel:+13852422256" className="text-text-strong hover:text-accent-primary transition-colors">
+                    +1 (385) 242 22 56
+                  </a>
+                </div>
+
+                <div>
+                  <p className="text-lg font-semibold text-text-strong mb-3">Follow Us:</p>
                   <div className="flex gap-4 items-center">
-                    {/* Instagram */}
-                    <a href="https://www.instagram.com/bradfordbuilt/#" target="_blank" rel="noopener noreferrer" className="text-text-strong hover:text-accent-primary transition-colors" aria-label="Instagram">
-                      <Instagram size={24} />
+                    <a href="mailto:Bestway.utah@gmail.com" className="text-text-strong hover:text-accent-primary transition-colors" aria-label="Email">
+                      <Mail size={24} />
                     </a>
-                    {/* Facebook */}
-                    <a href="https://www.facebook.com/bradfordcustomhomesandremodeling" target="_blank" rel="noopener noreferrer" className="text-text-strong hover:text-accent-primary transition-colors" aria-label="Facebook">
-                      <Facebook size={24} />
-                    </a>
-                    {/* LinkedIn */}
-                    <a href="https://www.linkedin.com/company/bradford-custom-homes-remodeling/" target="_blank" rel="noopener noreferrer" className="text-text-strong hover:text-accent-primary transition-colors" aria-label="LinkedIn">
-                      <Linkedin size={24} />
-                    </a>
-                    {/* TikTok */}
-                    <a href="https://www.tiktok.com/@bradfordbuilt" target="_blank" rel="noopener noreferrer" className="text-text-strong hover:text-accent-primary transition-colors" aria-label="TikTok">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12.9 2h3.1c.2 1.2.8 2.4 1.7 3.3 1 1 2.2 1.6 3.6 1.8v3.1c-1.5-.1-2.9-.6-4.2-1.3v6.7c0 3.8-3.1 6.9-6.9 6.9S3.3 19.4 3.3 15.6 6.4 8.7 10.2 8.7c.3 0 .6 0 .8.1v3.3c-.3-.1-.6-.1-.8-.1-2 0-3.6 1.6-3.6 3.6s1.6 3.6 3.6 3.6 3.6-1.6 3.6-3.6V2z"/>
-                      </svg>
-                    </a>
-                    {/* YouTube */}
-                    <a href="https://www.youtube.com/channel/UCcFnqmtZ-YXeDJY_qrGXIjQ" target="_blank" rel="noopener noreferrer" className="text-text-strong hover:text-accent-primary transition-colors" aria-label="YouTube">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M23.5 6.2c-.3-1.2-1.2-2.1-2.4-2.4C19 3.3 12 3.3 12 3.3s-7 0-9.1.5C1.7 4.1.8 5 .5 6.2.1 8.3.1 12 .1 12s0 3.7.4 5.8c.3 1.2 1.2 2.1 2.4 2.4 2.1.5 9.1.5 9.1.5s7 0 9.1-.5c1.2-.3 2.1-1.2 2.4-2.4.4-2.1.4-5.8.4-5.8s0-3.7-.4-5.8zM9.7 15.6V8.4l6.1 3.6-6.1 3.6z"/>
-                      </svg>
+                    <a href="tel:+13852422256" className="text-text-strong hover:text-accent-primary transition-colors" aria-label="Phone">
+                      <Phone size={24} />
                     </a>
                   </div>
                 </div>
@@ -268,7 +256,7 @@ export default function Contact() {
 
               {submitStatus === 'error' && (
                 <div className="mb-6 rounded-md border border-red-300 bg-red-50 p-4 text-sm text-red-800">
-                  Sorry, there was an error sending your message. Please try again or contact us directly at 470.835.0595.
+                  Sorry, there was an error sending your message. Please try again or contact us directly at +1 (385) 242 22 56.
                 </div>
               )}
 
@@ -299,12 +287,13 @@ export default function Contact() {
                       <SelectValue placeholder="Select an option" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="new-construction">New Construction</SelectItem>
-                      <SelectItem value="kitchen-remodel">Kitchen Remodel</SelectItem>
-                      <SelectItem value="bathroom-remodel">Bathroom Remodel</SelectItem>
-                      <SelectItem value="whole-home-remodel">Whole-home Remodel</SelectItem>
-                      <SelectItem value="addition">Addition</SelectItem>
-                      <SelectItem value="exterior">Exterior</SelectItem>
+                      <SelectItem value="pool-construction">Pool Construction</SelectItem>
+                      <SelectItem value="pool-repair">Pool Repair</SelectItem>
+                      <SelectItem value="pool-remodel">Pool Remodel</SelectItem>
+                      <SelectItem value="excavation-rebar">Excavation and Rebar</SelectItem>
+                      <SelectItem value="plumbing">Plumbing</SelectItem>
+                      <SelectItem value="shotcrete">Shotcrete</SelectItem>
+                      <SelectItem value="tile-plaster">Tile / Plaster / Copping</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
@@ -312,7 +301,7 @@ export default function Contact() {
 
                 {/* Land or Own Home */}
                 <div>
-                  <Label>Do you have land to build on or own the home that you're remodeling?</Label>
+                  <Label>Do you own the property where the pool work will be done?</Label>
                   <Select value={formData.hasLandOrOwnHome} onValueChange={(value) => handleInputChange('hasLandOrOwnHome', value)}>
                     <SelectTrigger className="mt-1 rounded-none border-0 shadow-[0_4px_14px_rgba(0,0,0,0.06)] focus:ring-0">
                       <SelectValue placeholder="Select an option" />
@@ -326,7 +315,7 @@ export default function Contact() {
 
                 {/* Architectural Plans */}
                 <div>
-                  <Label>Do you have architectural plans?</Label>
+                  <Label>Do you have existing pool plans or designs?</Label>
                   <Select value={formData.hasArchitecturalPlans} onValueChange={(value) => handleInputChange('hasArchitecturalPlans', value)}>
                     <SelectTrigger className="mt-1 rounded-none border-0 shadow-[0_4px_14px_rgba(0,0,0,0.06)] focus:ring-0">
                       <SelectValue placeholder="Select an option" />
@@ -340,7 +329,7 @@ export default function Contact() {
 
                 {/* Interior Designer */}
                 <div>
-                  <Label>Are you working with an Interior Designer?</Label>
+                  <Label>Are you working with a designer or landscape architect?</Label>
                   <Select value={formData.workingWithDesigner} onValueChange={(value) => handleInputChange('workingWithDesigner', value)}>
                     <SelectTrigger className="mt-1 rounded-none border-0 shadow-[0_4px_14px_rgba(0,0,0,0.06)] focus:ring-0">
                       <SelectValue placeholder="Select an option" />
@@ -360,11 +349,11 @@ export default function Contact() {
                       <SelectValue placeholder="Select an option" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="under-100k">Under $100,000</SelectItem>
-                      <SelectItem value="100k-200k">$100,000 - $200,000</SelectItem>
-                      <SelectItem value="200k-400k">$200,000 - $400,000</SelectItem>
-                      <SelectItem value="400k-750k">$400,000 - $750,000</SelectItem>
-                      <SelectItem value="750k-plus">$750,000 +</SelectItem>
+                      <SelectItem value="under-25k">Under $25,000</SelectItem>
+                      <SelectItem value="25k-50k">$25,000 - $50,000</SelectItem>
+                      <SelectItem value="50k-100k">$50,000 - $100,000</SelectItem>
+                      <SelectItem value="100k-150k">$100,000 - $150,000</SelectItem>
+                      <SelectItem value="150k-plus">$150,000 +</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

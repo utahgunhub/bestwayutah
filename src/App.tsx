@@ -2,11 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
-import NewConstruction from "./pages/NewConstruction";
-import Remodel from "./pages/Remodel";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -40,8 +38,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/new-construction" element={<NewConstruction />} />
-          <Route path="/remodel" element={<Remodel />} />
+          <Route path="/remodel" element={<Navigate to="/services" replace />} />
+          <Route path="/new-construction" element={<Navigate to="/services" replace />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
