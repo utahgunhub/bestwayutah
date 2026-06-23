@@ -6,10 +6,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import emailjs from '@emailjs/browser';
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { getAllAreas } from "@/data/areaPages";
 
 export default function Contact() {
+  usePageMeta({
+    title: "Contact Bestway Utah | Free Pool Construction Estimate",
+    description:
+      "Contact Bestway Utah for pool construction, repair, and remodeling. Serving Northern Utah, Salt Lake Valley, and Utah Valley. Free estimates.",
+    path: "/contact",
+    image: "/bestway-images/nice-pools/pools-18.png",
+  });
+
+  const serviceAreas = getAllAreas();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -156,7 +167,7 @@ export default function Contact() {
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `url(/bestway-images/gallery-18.webp)`,
+            backgroundImage: `url(/bestway-images/nice-pools/pools-18.png)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -234,6 +245,25 @@ export default function Contact() {
                       <Phone size={24} />
                     </a>
                   </div>
+                </div>
+
+                <div>
+                  <p className="text-lg font-semibold text-text-strong mb-3 flex items-center gap-2">
+                    <MapPin size={20} />
+                    Service Areas
+                  </p>
+                  <ul className="space-y-2">
+                    {serviceAreas.map((area) => (
+                      <li key={area.slug}>
+                        <Link
+                          to={`/areas/${area.slug}`}
+                          className="text-sm text-text-strong hover:text-accent-primary transition-colors leading-snug block"
+                        >
+                          {area.regionLabel} →
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </aside>

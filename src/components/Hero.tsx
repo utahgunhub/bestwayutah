@@ -13,14 +13,14 @@ interface HeroProps {
 }
 
 export default function Hero({
-  title = "Specialists in Pool Construction, Repairs and Remodeling",
-  titleLine2 = "Bringing Your Dream Home to Life",
-  subtitle = "We help you place the pool in the best spot in your home to make the most of every space in your backyard.",
+  title = "Utah Pool Builder",
+  titleLine2 = "Build, Repair & Remodel",
+  subtitle = "Utah's trusted pool builder. One in-house team from excavation to finish.",
   backgroundImage = "/bestway-images/gallery-1.webp",
   backgroundVideoSrc,
   hideCTA = false,
   darkerOverlay = false,
-  ctaText = "Call for Visit",
+  ctaText = "Free Estimate",
 }: HeroProps) {
   const [scrollY, setScrollY] = useState(0);
 

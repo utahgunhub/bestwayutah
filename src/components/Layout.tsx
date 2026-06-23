@@ -6,6 +6,7 @@ const navItems = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Gallery", href: "/gallery" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -128,6 +129,7 @@ export default function Layout({ children, hideFooter = false }: LayoutProps) {
                 <li><Link to="/about" className="text-text-strong hover:text-accent-primary transition-colors">ABOUT</Link></li>
                 <li><Link to="/services" className="text-text-strong hover:text-accent-primary transition-colors">SERVICES</Link></li>
                 <li><Link to="/gallery" className="text-text-strong hover:text-accent-primary transition-colors">GALLERY</Link></li>
+                <li><Link to="/blog" className="text-text-strong hover:text-accent-primary transition-colors">BLOG</Link></li>
                 <li><Link to="/contact" className="text-text-strong hover:text-accent-primary transition-colors">CONTACT</Link></li>
               </ul>
             </div>
@@ -135,12 +137,12 @@ export default function Layout({ children, hideFooter = false }: LayoutProps) {
             <div className="lg:ml-12">
               <p className="text-sm font-semibold text-text-strong mb-3 uppercase tracking-wide">Our Services</p>
               <ul className="space-y-2 text-sm mb-6">
-                <li><Link to="/services" className="text-text-strong hover:text-accent-primary transition-colors">EXCAVATION AND REBAR</Link></li>
-                <li><Link to="/services" className="text-text-strong hover:text-accent-primary transition-colors">PLUMBING</Link></li>
-                <li><Link to="/services" className="text-text-strong hover:text-accent-primary transition-colors">SHOTCRETE</Link></li>
-                <li><Link to="/services" className="text-text-strong hover:text-accent-primary transition-colors">TILE</Link></li>
-                <li><Link to="/services" className="text-text-strong hover:text-accent-primary transition-colors">PLASTER</Link></li>
-                <li><Link to="/services" className="text-text-strong hover:text-accent-primary transition-colors">COPPING</Link></li>
+                <li><Link to="/services/new-swimming-pools" className="text-text-strong hover:text-accent-primary transition-colors">NEW SWIMMING POOLS</Link></li>
+                <li><Link to="/services/pool-remodels" className="text-text-strong hover:text-accent-primary transition-colors">POOL REMODELS</Link></li>
+                <li><Link to="/services/shotcrete" className="text-text-strong hover:text-accent-primary transition-colors">SHOTCRETE</Link></li>
+                <li><Link to="/services/tile" className="text-text-strong hover:text-accent-primary transition-colors">TILE</Link></li>
+                <li><Link to="/services/plumbing" className="text-text-strong hover:text-accent-primary transition-colors">PLUMBING</Link></li>
+                <li><Link to="/services/excavation-and-rebar" className="text-text-strong hover:text-accent-primary transition-colors">EXCAVATION AND REBAR</Link></li>
               </ul>
               <p className="text-sm font-semibold text-text-strong mb-2 uppercase tracking-wide">Contact Info</p>
               <ul className="space-y-1 text-sm text-text-strong">

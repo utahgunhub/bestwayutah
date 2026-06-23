@@ -221,7 +221,7 @@ export default function About() {
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('/bestway-images/gallery-7.webp')`,
+            backgroundImage: `url('/bestway-images/nice-pools/pools-7.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -493,7 +493,7 @@ export default function About() {
                 Services In Your Locality
               </h2>
               <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-8">
-                West Valley City, Utah and surrounding areas
+                Utah and surrounding areas
               </p>
               <Link to="/contact" onClick={() => {
                 setTimeout(() => {

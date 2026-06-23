@@ -4,7 +4,7 @@ import { useMemo, useState, useEffect, useRef } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { MapPin, Home } from "lucide-react";
 
-type FilterType = "all" | "construction" | "repairs" | "remodeling";
+type FilterType = "all" | "pools" | "construction";
 
 type ProjectImageProps = {
   src: string;
@@ -78,48 +78,38 @@ function ProjectImage({ src, alt, dialogAlt }: ProjectImageProps) {
   );
 }
 
+const nicePoolImages = Array.from({ length: 31 }, (_, i) => `/bestway-images/nice-pools/pools-${i + 1}.png`);
+const constructionImages = Array.from({ length: 30 }, (_, i) => `/bestway-images/gallery-${i + 1}.webp`);
+
 const projects = [
   {
-    id: "pool-construction",
-    name: "Pool Construction",
-    category: "construction",
+    id: "pools",
+    name: "Pools",
+    category: "pools" as const,
     location: "Utah",
-    type: "New Pool Construction",
-    description: "From the ground up pool constructions. We help you place the pool in the best spot in your home to make the most of every space in your backyard.",
+    type: "Completed Projects",
+    description: "Browse finished pools we've built across Utah — custom shapes, finishes, and layouts designed to fit each backyard.",
     link: "/services",
-    images: Array.from({ length: 10 }, (_, i) => `/bestway-images/gallery-${i + 1}.webp`)
+    images: nicePoolImages,
   },
   {
-    id: "pool-repairs",
-    name: "Pool Repairs",
-    category: "repairs",
+    id: "construction",
+    name: "Construction",
+    category: "construction" as const,
     location: "Utah",
-    type: "Pool Repair",
-    description: "Expert pool repair services to restore your pool to its best condition. Professional, responsive craftsmanship you can trust.",
+    type: "Excavation, Rebar, Plumbing & Shotcrete",
+    description: "Our full in-house team handles excavation and rebar, plumbing, shotcrete, tile, plaster, and copping — everything needed to build a pool that lasts.",
     link: "/services",
-    images: Array.from({ length: 10 }, (_, i) => `/bestway-images/gallery-${i + 11}.webp`)
+    images: constructionImages,
   },
-  {
-    id: "pool-remodeling",
-    name: "Pool Remodeling",
-    category: "remodeling",
-    location: "Utah",
-    type: "Pool Remodel",
-    description: "Complete pool remodeling from tile and plaster to coping and shotcrete. Over 50 color and finish options available.",
-    link: "/services",
-    images: Array.from({ length: 10 }, (_, i) => `/bestway-images/gallery-${i + 21}.webp`)
-  }
 ];
 
 export default function Gallery() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
 
   const filteredProjects = useMemo(() => {
-    const list = activeFilter === "all"
-      ? projects
-      : projects.filter(p => p.category === activeFilter);
-
-    return [...list].sort((a, b) => a.images.length - b.images.length);
+    if (activeFilter === "all") return projects;
+    return projects.filter((p) => p.category === activeFilter);
   }, [activeFilter]);
 
   return (
@@ -128,7 +118,7 @@ export default function Gallery() {
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `url(/bestway-images/gallery-4.webp)`,
+            backgroundImage: `url(/bestway-images/nice-pools/pools-4.png)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -142,7 +132,7 @@ export default function Gallery() {
             <h1 className="text-white leading-tight mb-4" style={{ fontFamily: "'PP Editorial Old', serif", fontWeight: 400 }}>
               <div className="text-4xl md:text-5xl lg:text-6xl">Gallery</div>
             </h1>
-            <p className="text-white/90 text-lg md:text-xl max-w-xl">Explore our pool construction, repairs, and remodeling projects across Utah.</p>
+            <p className="text-white/90 text-lg md:text-xl max-w-xl">Explore our pool and construction projects across Utah.</p>
           </div>
         </div>
       </section>
@@ -158,7 +148,17 @@ export default function Gallery() {
                   : "text-text hover:text-text-strong"
               }`}
             >
-              All Projects
+              All
+            </button>
+            <button
+              onClick={() => setActiveFilter("pools")}
+              className={`pb-4 font-medium text-lg transition-all ${
+                activeFilter === "pools"
+                  ? "text-text-strong border-b-2 border-text-strong"
+                  : "text-text hover:text-text-strong"
+              }`}
+            >
+              Pools
             </button>
             <button
               onClick={() => setActiveFilter("construction")}
@@ -168,27 +168,7 @@ export default function Gallery() {
                   : "text-text hover:text-text-strong"
               }`}
             >
-              Pool Construction
-            </button>
-            <button
-              onClick={() => setActiveFilter("repairs")}
-              className={`pb-4 font-medium text-lg transition-all ${
-                activeFilter === "repairs"
-                  ? "text-text-strong border-b-2 border-text-strong"
-                  : "text-text hover:text-text-strong"
-              }`}
-            >
-              Repairs
-            </button>
-            <button
-              onClick={() => setActiveFilter("remodeling")}
-              className={`pb-4 font-medium text-lg transition-all ${
-                activeFilter === "remodeling"
-                  ? "text-text-strong border-b-2 border-text-strong"
-                  : "text-text hover:text-text-strong"
-              }`}
-            >
-              Remodeling
+              Construction
             </button>
           </div>
 
@@ -213,14 +193,12 @@ export default function Gallery() {
                     <p className="text-base text-text leading-relaxed">
                       {project.description}
                     </p>
-                    {project.link !== "#" && (
-                      <Link 
-                        to={project.link}
-                        className="inline-block text-text-strong font-medium hover:underline"
-                      >
-                        View Services →
-                      </Link>
-                    )}
+                    <Link 
+                      to={project.link}
+                      className="inline-block text-text-strong font-medium hover:underline"
+                    >
+                      View Services →
+                    </Link>
                   </div>
                 </div>
 

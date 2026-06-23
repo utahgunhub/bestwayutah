@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
+import ServiceDetail from "./pages/ServiceDetail";
+import AreaDetail from "./pages/AreaDetail";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -22,9 +24,8 @@ import Okun from "./pages/projects/Okun";
 import AndersonBasement from "./pages/projects/AndersonBasement";
 import PharoahKitchen from "./pages/projects/PharoahKitchen";
 import PostOakBasement from "./pages/projects/PostOakBasement";
-import KitchenRemodelCosts2025 from "./pages/blog/KitchenRemodelCosts2025";
-import BathroomTimelineChecklist from "./pages/blog/BathroomTimelineChecklist";
-import CustomHomeVsRemodel from "./pages/blog/CustomHomeVsRemodel";
+import UtahPoolConstructionCostGuide2026 from "./pages/blog/UtahPoolConstructionCostGuide2026";
+import UtahPoolMaintenanceSeasonalGuide from "./pages/blog/UtahPoolMaintenanceSeasonalGuide";
 
 const queryClient = new QueryClient();
 
@@ -38,16 +39,17 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/remodel" element={<Navigate to="/services" replace />} />
           <Route path="/new-construction" element={<Navigate to="/services" replace />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
+          <Route path="/areas/:slug" element={<AreaDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/customhomeplans" element={<CustomHomePlans />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/kitchen-remodel-costs-2025-atlanta-charleston" element={<KitchenRemodelCosts2025 />} />
-          <Route path="/blog/bathroom-remodel-timeline-and-checklist" element={<BathroomTimelineChecklist />} />
-          <Route path="/blog/custom-home-vs-remodel-which-is-right" element={<CustomHomeVsRemodel />} />
+          <Route path="/blog/utah-pool-construction-cost-guide-2026" element={<UtahPoolConstructionCostGuide2026 />} />
+          <Route path="/blog/utah-pool-maintenance-seasonal-guide" element={<UtahPoolMaintenanceSeasonalGuide />} />
           <Route path="/atlanta" element={<Atlanta />} />
           <Route path="/charleston" element={<Charleston />} />
           <Route path="/highlands" element={<Highlands />} />

@@ -10,62 +10,67 @@ import {
   Star
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
+import { usePageMeta } from "@/hooks/usePageMeta";
 const galleryImage1 = "/bestway-images/gallery-2.webp";
 const galleryImage2 = "/bestway-images/gallery-5.webp";
 const galleryImage3 = "/bestway-images/gallery-8.webp";
 
 const featuredProjects = [
   {
-    category: "Pool Service",
-    title: "Excavation and Rebar",
-    location: "Utah",
-    after: "/bestway-images/excavation-and-rebar.webp",
-    description: "Our expert rebar installation reinforces your concrete for unparalleled strength and stability, laying the groundwork for a dream home that lasts. Proper excavation uses specialized equipment to excavate the site to precise depth and dimensions. Rebar reinforcement is essential for structural integrity, allowing the pool to withstand the weight of water and ground movement. All processes fully comply with local building codes and regulations.",
-    testimonial: "By focusing on these critical initial steps, we lay the foundation for a long-lasting, high-quality pool.",
-    client: "Bestway Utah",
-    href: "/contact"
-  },
-  {
-    category: "Pool Service",
+    category: "Our Expertise",
     title: "Plumbing",
     location: "Utah",
     after: "/bestway-images/plumbing.webp",
-    description: "Proper pool plumbing is critical for the efficient and safe operation of any pool. Our experienced plumbers follow a meticulous process: custom design layouts, high-quality piping installation, leak prevention at every joint, strict code compliance, and thorough final inspection before the pool is filled.",
-    testimonial: "Entrust your pool plumbing to our skilled team for reliable, trouble-free performance for years to come.",
+    description: "Proper pool plumbing keeps everything running safely and efficiently. Our team designs custom layouts, installs high-quality piping, and seals every connection before your pool is ever filled.",
+    highlights: [
+      "Custom layouts for pumps, filters, heaters, and equipment",
+      "Leak-proof joints with full pressure testing",
+      "Code-compliant installs inspected before fill-up",
+    ],
+    testimonial: "Reliable, trouble-free performance for years to come.",
     client: "Bestway Utah",
-    href: "/contact"
+    href: "/services/plumbing"
   },
   {
-    category: "Pool Service",
-    title: "Shotcrete",
+    category: "Our Expertise",
+    title: "Excavation and Rebar",
     location: "Utah",
-    after: "/bestway-images/shotcrete.webp",
-    description: "Shotcrete is the preferred method for constructing high-quality, durable in-ground pools. We carefully prepare the excavated area, install rebar framework, apply high-strength shotcrete with specialized equipment, shape and contour walls to precise specifications, monitor curing, apply waterproofing membranes, and finish with plaster, tile, or pebble.",
-    testimonial: "By leveraging the superior strength and seamless construction of shotcrete, Bestway Utah delivers pools built to last.",
+    after: "/bestway-images/excavation-and-rebar.webp",
+    description: "Every great pool starts with the right dig and the right steel. We excavate to exact depth and dimensions, then install rebar to engineer specs and local building code.",
+    highlights: [
+      "Precision excavation with specialized equipment",
+      "Rebar tied to spec for long-term structural strength",
+      "Full compliance with Utah building codes",
+    ],
+    testimonial: "Critical first steps for a pool that lasts.",
     client: "Bestway Utah",
-    href: "/contact"
-  }
+    href: "/services/excavation-and-rebar"
+  },
 ];
 
 const categories = [
   {
-    icon: <Wrench size={40} />,
-    title: "Excavation and Rebar",
-    image: "/bestway-images/excavation-and-rebar.webp"
-  },
-  {
-    icon: <Paintbrush size={40} />,
-    title: "Plumbing",
-    image: "/bestway-images/plumbing.webp"
-  },
-  {
     icon: <Home size={40} />,
-    title: "Shotcrete",
-    image: "/bestway-images/shotcrete.webp"
+    title: "New Swimming Pools",
+    slug: "new-swimming-pools",
+    image: "/bestway-images/nice-pools/pools-1.png"
+  },
+  {
+    icon: <Wrench size={40} />,
+    title: "Pool Remodels",
+    slug: "pool-remodels",
+    image: "/bestway-images/nice-pools/pools-15.png"
   },
   {
     icon: <Hammer size={40} />,
+    title: "Shotcrete",
+    slug: "shotcrete",
+    image: "/bestway-images/shotcrete.webp"
+  },
+  {
+    icon: <Paintbrush size={40} />,
     title: "Tile",
+    slug: "tile",
     image: "/bestway-images/tile.webp"
   }
 ];
@@ -95,6 +100,16 @@ const testimonials = [
 ];
 
 export default function Services() {
+  usePageMeta({
+    title: "Pool Services Utah | Bestway Utah — Build, Repair & Remodel",
+    description:
+      "Full-service Utah pool builder offering new swimming pools, remodels, shotcrete, tile, plumbing, and excavation. 16+ years. In-house team. Free estimates.",
+    path: "/services",
+    image: "/bestway-images/nice-pools/pools-11.png",
+    keywords:
+      "Utah pool services, pool builder Utah, pool construction, pool remodel Utah, shotcrete Utah, pool tile Utah",
+  });
+
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
@@ -312,16 +327,16 @@ export default function Services() {
 
   const getCategoryBlurb = (title: string): string => {
     switch (title) {
-      case "Excavation and Rebar":
-        return "Our expert rebar installation reinforces your concrete for unparalleled strength and stability.";
-      case "Plumbing":
-        return "No matter the size of your pool, our team has the experience to solve any plumbing problem.";
+      case "New Swimming Pools":
+        return "Custom in-ground pools built from the ground up — designed to fit your yard and lifestyle.";
+      case "Pool Remodels":
+        return "Update finishes, layout, and features to transform your existing pool.";
       case "Shotcrete":
         return "Highly durable, flexible shotcrete molded into any shape or size for your pool.";
       case "Tile":
-        return "Extremely durable, smooth, colorfast tile with many options for a unique pool surface.";
+        return "Durable, colorfast tile with many options for a unique pool surface.";
       default:
-        return "Contact us to elevate your pool construction project.";
+        return "Contact us to elevate your pool project.";
     }
   };
 
@@ -333,7 +348,7 @@ export default function Services() {
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `url(/bestway-images/gallery-3.webp)`,
+            backgroundImage: `url(/bestway-images/nice-pools/pools-11.png)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -389,8 +404,8 @@ export default function Services() {
               <div className="relative max-w-md text-right">
                 <div className="absolute -top-8 -left-10 md:-top-10 md:-left-12 text-6xl font-bold text-text-strong/10">+</div>
                 <div className="pt-2 pl-6">
-                  <span className="block text-xl md:text-2xl text-text leading-tight">Plaster, Copping,</span>
-                  <span className="block text-xl md:text-2xl text-text leading-tight">and more below.</span>
+                  <span className="block text-xl md:text-2xl text-text leading-tight">Plumbing &</span>
+                  <span className="block text-xl md:text-2xl text-text leading-tight">excavation below.</span>
                 </div>
               </div>
             </div>
@@ -418,7 +433,7 @@ export default function Services() {
                 </div>
 
                 {/* Image */}
-                <Link to="/gallery" className="block mb-6">
+                <Link to={`/services/${category.slug}`} className="block mb-6">
                   <div 
                     className="relative aspect-square overflow-hidden bg-bg-muted shadow-lg"
                     onMouseEnter={() => setHoveredCategoryIndex(index)}
@@ -433,8 +448,10 @@ export default function Services() {
                 </Link>
 
                 {/* Title */}
-                <h3 className="text-xl md:text-2xl lg:text-xl xl:text-2xl font-bold text-text-strong mb-3 whitespace-nowrap tracking-tight">
-                  {category.title}
+                <h3 className="text-xl md:text-2xl lg:text-xl xl:text-2xl font-bold text-text-strong mb-3 tracking-tight">
+                  <Link to={`/services/${category.slug}`} className="hover:text-accent-primary transition-colors">
+                    {category.title}
+                  </Link>
                 </h3>
 
                 {/* Description */}
@@ -531,31 +548,38 @@ export default function Services() {
                     })()}px, 0, 0)`
                   }}
                 >
-                  <div className={`bg-white p-8 md:p-12 shadow-xl h-full w-full flex flex-col ${index % 2 === 0 ? 'rounded-r-2xl' : 'rounded-l-2xl'}`}>
+                  <div className={`bg-white p-8 md:p-10 shadow-xl h-full w-full flex flex-col overflow-hidden ${index % 2 === 0 ? 'rounded-r-2xl' : 'rounded-l-2xl'}`}>
                     <div className="text-sm font-bold text-accent-primary mb-2 uppercase tracking-wider">
                       {project.category}
                 </div>
-                    <h3 className="text-3xl md:text-4xl font-bold text-text-strong mb-3">
+                    <h3 className="text-2xl md:text-3xl font-bold text-text-strong mb-2">
                       {project.title}
                 </h3>
-                    <p className="text-text-strong/60 mb-6">{project.location}</p>
-                    <p className="text-lg text-text leading-relaxed mb-8">
+                    <p className="text-text-strong/60 text-sm mb-4">{project.location}</p>
+                    <p className="text-base text-text leading-relaxed mb-4">
                       {project.description}
                     </p>
 
-                    {/* Testimonial */}
-                    <div className="border-l-4 border-accent-primary pl-6 mb-8">
-                      <Quote size={24} className="text-accent-primary/30 mb-2" />
-                      <p className="text-text italic mb-3">"{project.testimonial}"</p>
-                      <p className="text-sm font-medium text-text-strong">— {project.client}</p>
+                    {"highlights" in project && project.highlights && (
+                      <ul className="text-sm text-text space-y-2 mb-5 list-disc pl-5">
+                        {project.highlights.map((item) => (
+                          <li key={item} className="leading-snug">{item}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    <div className="border-l-4 border-accent-primary pl-4 mb-5">
+                      <Quote size={20} className="text-accent-primary/30 mb-1" />
+                      <p className="text-text italic text-sm mb-1">"{project.testimonial}"</p>
+                      <p className="text-xs font-medium text-text-strong">— {project.client}</p>
                     </div>
 
                     <Link 
-                      to={(project as any).href ?? "/gallery"}
-                      className="flex items-center gap-3 text-text-strong hover:opacity-80 transition-opacity"
+                      to={project.href}
+                      className="flex items-center gap-3 text-text-strong hover:opacity-80 transition-opacity shrink-0 mt-auto"
                     >
                       <div className="w-4 h-4 border-2 border-text-strong bg-transparent"></div>
-                      <span className="text-sm font-medium uppercase tracking-wide">Contact Us</span>
+                      <span className="text-sm font-medium uppercase tracking-wide">Learn More</span>
                     </Link>
                   </div>
                 </div>

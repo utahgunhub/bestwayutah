@@ -4,7 +4,14 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState, useCallback } from "react";
 
-const galleryImages = Array.from({ length: 30 }, (_, i) => `/bestway-images/gallery-${i + 1}.webp`);
+const nicePoolImages = Array.from({ length: 31 }, (_, i) => `/bestway-images/nice-pools/pools-${i + 1}.png`);
+
+const whyChooseBackgrounds = [
+  nicePoolImages[0],
+  nicePoolImages[7],
+  nicePoolImages[14],
+  nicePoolImages[21],
+];
 
 const whyChooseItems = [
   {
@@ -171,12 +178,12 @@ const Index = () => {
   return (
     <Layout>
       <Hero 
-        title="Specialists in Pool Construction, Repairs and Remodeling"
-        titleLine2="Bringing Your Dream Home to Life"
-        subtitle="We help you place the pool in the best spot in your home to make the most of every space in your backyard."
+        title="Utah Pool Builder"
+        titleLine2="Build, Repair & Remodel"
+        subtitle="Utah's trusted pool builder. One in-house team from excavation to finish."
         backgroundVideoSrc="/bestway-images/hero-video.mp4"
         darkerOverlay={true}
-        ctaText="Call for Visit"
+        ctaText="Free Estimate"
       />
 
       <section className="py-20 bg-bg-alt">
@@ -231,11 +238,11 @@ const Index = () => {
             willChange: 'transform'
           }}
         >
-          {galleryImages.slice(0, 6).map((src, idx) => (
+          {nicePoolImages.slice(0, 6).map((src, idx) => (
             <div key={idx} className="flex-shrink-0 w-96 h-72 overflow-hidden">
               <img 
                 src={src}
-                alt={`Gallery ${idx + 1}`}
+                alt={`Pool ${idx + 1}`}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -249,11 +256,11 @@ const Index = () => {
             willChange: 'transform'
           }}
         >
-          {galleryImages.slice(6, 11).map((src, idx) => (
+          {nicePoolImages.slice(6, 11).map((src, idx) => (
             <div key={`row2-${idx}`} className="flex-shrink-0 w-96 h-72 overflow-hidden">
               <img 
                 src={src}
-                alt={`Gallery ${idx + 7}`}
+                alt={`Pool ${idx + 7}`}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -281,12 +288,7 @@ const Index = () => {
 
       <section className="relative" style={{backgroundColor: '#F5F1ED'}}>
         <div className="absolute inset-0">
-          {[
-            '/bestway-images/excavation-and-rebar.webp',
-            '/bestway-images/plumbing.webp',
-            '/bestway-images/shotcrete.webp',
-            '/bestway-images/tile.webp',
-          ].map((src, idx) => (
+          {whyChooseBackgrounds.map((src, idx) => (
             <div
               key={idx}
               ref={(el) => (whyImageRefs.current[idx] = el)}
@@ -295,7 +297,7 @@ const Index = () => {
             >
               <img
                 src={src}
-                alt={`Why Choose Bestway Utah ${idx + 1}`}
+                alt={`Why Choose Bestway Utah — ${whyChooseItems[idx].title}`}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-text-strong/40"></div>
@@ -464,7 +466,7 @@ const Index = () => {
         >
           <Carousel opts={{ loop: true, align: 'start' }} className="w-full">
             <CarouselContent>
-              {galleryImages.map((src, idx) => (
+              {nicePoolImages.map((src, idx) => (
                 <CarouselItem key={idx} className="basis-[85%] md:basis-[75%] lg:basis-[70%]">
                   <div className="w-full h-[26rem] md:h-[32rem] lg:h-[36rem] overflow-hidden">
                     <img
